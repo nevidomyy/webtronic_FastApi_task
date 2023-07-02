@@ -18,14 +18,20 @@ class User(Base):
     last_login = Column(DateTime, default=datetime.utcnow())
     is_active = Column(Boolean, default=True)
     password = Column(String(255), nullable=True)
-    language_id = Column(ForeignKey('language.language_code'), nullable=False)
-
-
-class Language(Base):
-    __tablename__ = 'language'
-
-    language_code = Column(String(2), primary_key=True)
 
 
 class Post(Base):
     __tablename__ = 'post'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    text = Column(Text, nullable=False)
+    date_edited = Column(DateTime, default=datetime.utcnow())
+    user_id = Column(ForeignKey('user.id'), nullable=False)
+
+
+class Like(Base):
+    __tablename__ = 'like'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    post_id = Column(ForeignKey('post.id'), nullable=False)
+    user_id = Column(ForeignKey('user.id'), nullable=False)
