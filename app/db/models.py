@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Text, \
-    Boolean
+from sqlalchemy import (Column, String, Integer, ForeignKey,
+                        DateTime, Text, Boolean)
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -29,4 +29,3 @@ class Language(Base):
 
 class Post(Base):
     __tablename__ = 'post'
-
