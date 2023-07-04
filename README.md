@@ -1,5 +1,5 @@
 # FastAPI Posts APP Task
-
+#### With JWT authorize
 #### Software development stack ####
 Fastapi - web framework для API\
 SQLAlchemy - ORM для работы с БД\
@@ -10,7 +10,7 @@ Pydantic - Валидация данных, с использованием @val
 
 
 #### Build and run ####
-1. Install **docker**: https://docs.docker.com/engine/install/ \
+1. Install **docker**: https://docs.docker.com/engine/install/ 
 2. Install **docker-compose**: https://docs.docker.com/compose/install/
 
 3. Run command in terminal:
