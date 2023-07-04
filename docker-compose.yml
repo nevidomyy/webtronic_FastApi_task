@@ -1,0 +1,42 @@
+version: '3.3'
+
+
+services:
+
+  webtronic_db:
+    image: postgres:12.3-alpine
+    restart: unless-stopped
+    container_name: webtronic_db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: webtronic
+      POSTGRES_USER: webtronic
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - web
+
+
+  webtronic_api:
+    build: .
+    restart: unless-stopped
+    container_name: webtronic_api
+    command: sh run.sh
+    ports:
+      - 8080:8080
+    networks:
+      - web
+    depends_on:
+      - webtronic_db
+
+networks:
+  web:
+    external: true
+
+volumes:
+  db_data:
+    driver: local
+  storage:
+    driver: local

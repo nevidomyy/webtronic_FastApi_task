@@ -1,6 +1,6 @@
 import os
 
-DB_HOST:str = 'localhost'
+DB_HOST:str = 'webtronic_db'
 POSTGRESQL_DSN: str = f'postgresql://webtronic:password@{DB_HOST}:5432/webtronic'
 APP_NAME: str = 'Webtronic'
 API_VERSION: str = '1.0'

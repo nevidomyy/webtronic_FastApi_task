@@ -1,4 +1,9 @@
-FROM ubuntu:latest
-LABEL authors="nevidomyy"
+FROM python:3.11
+ENV PYTHONUNBUFFERED 1
 
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+COPY app/requirements.txt /app/
+RUN pip install -r /app/requirements.txt
+COPY . .
+
+EXPOSE 8080
