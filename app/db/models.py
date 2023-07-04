@@ -2,7 +2,7 @@ from datetime import datetime
 
 from sqlalchemy import (
     Column, String, Integer, ForeignKey,
-    DateTime, Text, Boolean, UniqueConstraint
+    DateTime, Text, Boolean, UniqueConstraint, Null
 )
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -34,9 +34,9 @@ class Post(Base):
 class Like(Base):
     __tablename__ = 'like'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    post_id = Column(ForeignKey('post.id'), nullable=False)
-    user_id = Column(ForeignKey('user.id'), nullable=False)
+    post_id = Column(ForeignKey('post.id'), nullable=False, primary_key=True)
+    user_id = Column(ForeignKey('user.id'), nullable=False, primary_key=True)
+    like = Column(Boolean, default=Null)
 
     __table_args__ = (
         UniqueConstraint('post_id', 'user_id', name='uq_post_user_like'),
