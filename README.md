@@ -1,10 +1,10 @@
 # FastAPI Posts APP Task
-#### With JWT authorize
+#### Supported JWT authorization
 #### Software development stack ####
-Fastapi - web framework для API\
-SQLAlchemy - ORM для работы с БД\
-Alembic - Управление миграциями\
-Pydantic - Валидация данных, с использованием @validator.
+Fastapi - web framework\
+SQLAlchemy - ORM\
+Alembic - Migration manager\
+Pydantic - Data and models validator.
 
 
 
