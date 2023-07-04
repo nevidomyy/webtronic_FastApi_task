@@ -24,4 +24,4 @@ docker-compose up --build
 ```
 #### URLs ###
 FastApi Swagger: http://localhost:8080/docs
-> Use access token to authorize in swagger
+> Use access jwt token to authorize in swagger
