@@ -34,8 +34,10 @@ class Post(Base):
 class Like(Base):
     __tablename__ = 'like'
 
-    post_id = Column(ForeignKey('post.id'), nullable=False, primary_key=True)
-    user_id = Column(ForeignKey('user.id'), nullable=False, primary_key=True)
+    post_id = Column(ForeignKey('post.id', ondelete='CASCADE'),
+                     nullable=False, primary_key=True)
+    user_id = Column(ForeignKey('user.id', ondelete='CASCADE'),
+                     nullable=False, primary_key=True)
     like = Column(Boolean, default=Null)
 
     __table_args__ = (
