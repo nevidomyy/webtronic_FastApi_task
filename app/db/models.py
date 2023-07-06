@@ -1,10 +1,12 @@
 from datetime import datetime
 
+from fastapi import HTTPException
 from sqlalchemy import (
     Column, String, Integer, ForeignKey,
     DateTime, Text, Boolean, UniqueConstraint, Null
 )
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import validates
 
 Base = declarative_base()
 
@@ -26,7 +28,7 @@ class Post(Base):
     __tablename__ = 'post'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    text = Column(Text, nullable=False)
+    text = Column(Text, nullable=False, min_length=10)
     date_edited = Column(DateTime, default=datetime.utcnow())
     user_id = Column(ForeignKey('user.id'), nullable=False)
 

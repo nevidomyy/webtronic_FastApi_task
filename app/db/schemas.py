@@ -21,6 +21,18 @@ class RegisterUser(BaseModel):
             return password_hashing(value)
         return value
 
+    @validator('first_name', 'last_name')
+    def validate_name(cls, value):
+        if len(value) < 1:
+            raise HTTPException(
+                status_code=403,
+                detail="The 'text' field must have a "
+                       "minimum length of 1 characters.")
+
+        if '\u0000' in value:
+            raise ValueError("Text cannot contain null character (\\u0000)")
+        return value
+
 
 class LoginUser(BaseModel):
     email: EmailStr
@@ -49,6 +61,12 @@ class PostList(BaseModel):
 
 class CreatePostModel(BaseModel):
     text: str
+
+    @validator('text')
+    def text_validator(cls, value):
+        if '\u0000' in value:
+            raise ValueError("Text cannot contain null character (\\u0000)")
+        return value
 
 
 class PostDetail(BaseModel):

@@ -50,9 +50,10 @@ async def update_post(post_id: int, data: schemas.PostUpdate,
         if not post_obj:
             raise HTTPException(status_code=HTTP_404_NOT_FOUND)
 
-        post_obj.update({**data.dict()})
+        for key, value in data.dict().items():
+            setattr(post_obj, key, value)
         session.commit()
-        post_obj = session.query(Post).filter(Post.id == post_id).first()
+        session.refresh(post_obj)
 
         return schemas.PostDetail(**post_obj.__dict__)
 
