@@ -46,7 +46,7 @@ async def update_post(post_id: int, data: schemas.PostUpdate,
                       user: Depends = get_user()) -> schemas.PostDetail:
     with service_session() as session:
         post_obj = session.query(Post).filter(
-            and_(Post.id == post_id, Post.user_id == user.id))
+            and_(Post.id == post_id, Post.user_id == user.id)).first()
         if not post_obj:
             raise HTTPException(status_code=HTTP_404_NOT_FOUND)
 
