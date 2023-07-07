@@ -25,7 +25,7 @@ class RegisterUser(BaseModel):
     def validate_name(cls, value):
         if len(value) < 1:
             raise HTTPException(
-                status_code=403,
+                status_code=422,
                 detail="The 'text' field must have a "
                        "minimum length of 1 characters.")
 

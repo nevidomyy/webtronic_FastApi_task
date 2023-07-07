@@ -28,7 +28,7 @@ class Post(Base):
     __tablename__ = 'post'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    text = Column(Text, nullable=False, min_length=10)
+    text = Column(Text, nullable=False)
     date_edited = Column(DateTime, default=datetime.utcnow())
     user_id = Column(ForeignKey('user.id'), nullable=False)
 

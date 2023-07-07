@@ -19,7 +19,7 @@ async def registration(data: schemas.RegisterUser) -> AuthResponseModel:
     Register new user in database
     """
     with service_session() as session:
-        if user_obj := session.query(User).filter_by(email=data.email).first():
+        if session.query(User).filter_by(email=data.email).first():
             raise HTTPException(status_code=409, detail='Already Exists')
 
         user_obj = User(**data.dict())
